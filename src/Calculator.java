@@ -233,8 +233,8 @@ public class Calculator extends JFrame implements ActionListener
     {
         String expression = event.getActionCommand();
 
-        int parenCount = 0;
-        int curlyBraceCount = 0;
+        //int parenCount = 0;
+        //int curlyBraceCount = 0;
 
         // if the value is a number
         if ((expression.charAt(0) >= '0' && expression.charAt(0) <= '9') || expression.charAt(0) == '.')
@@ -338,8 +338,6 @@ public class Calculator extends JFrame implements ActionListener
                 }
             }
 
-            // store the value in 1st
-
             // set the value of text
             entry.setText(string0 + string1 + string2 + "=" + solution);
 
@@ -423,8 +421,6 @@ public class Calculator extends JFrame implements ActionListener
                         break;
                     }
                 }
-
-                // store the value in 1st
 
                 // convert it to string
                 string0 = Double.toString(solution);
