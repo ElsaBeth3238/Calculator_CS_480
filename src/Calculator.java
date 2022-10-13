@@ -1,12 +1,11 @@
 /*
 CS 480 Calculator by Elisabeth Jenkins
 
-Credit: I got help with the Java Swing aspects from geeksforgeeks.org
+Credit: I got help with the Java Swing aspects and with the parsing method from geeksforgeeks.org
  */
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.awt.*;
@@ -47,7 +46,8 @@ public class Calculator extends JFrame implements ActionListener
         Font entryFont = new Font("Arial", Font.PLAIN, 25);
         entry.setFont(entryFont);
 
-        JButton bnum0, bnum1, bnum2, bnum3, bnum4, bnum5, bnum6, bnum7, bnum8, bnum9, badd, bsub, bdiv, bmult, bdec, bequals, bclear;
+        JButton bnum0, bnum1, bnum2, bnum3, bnum4, bnum5, bnum6, bnum7, bnum8, bnum9, badd, bsub, bdiv, bmult,
+                bdec, bequals, bclear, bpower, bsin, bcos, btan, bcot, bln, blog10, bopparen, bendparen, bopcurbr, bendcurbr;
 
         //create buttons for numbers
         bnum0 = new JButton("0");
@@ -66,11 +66,23 @@ public class Calculator extends JFrame implements ActionListener
         bsub = new JButton("-");
         bdiv = new JButton("/");
         bmult = new JButton("*");
+        bpower = new JButton("^");
+        bsin = new JButton("sin");
+        bcos = new JButton("cos");
+        btan = new JButton("tan");
+        bcot = new JButton("cot");
+        bln = new JButton("ln");
+        blog10 = new JButton("log_10");
+
         bclear = new JButton("C");
 
-        //create other buttons (equals, decimal)
+        //create other buttons (equals, decimal, parentheses, curly braces)
         bequals = new JButton("=");
         bdec = new JButton(".");
+        bopparen = new JButton("(");
+        bendparen = new JButton(")");
+        bopcurbr = new JButton("{");
+        bendcurbr = new JButton("}");
 
 
         //create panel
@@ -108,6 +120,28 @@ public class Calculator extends JFrame implements ActionListener
         bdiv.setFont(buttonFont);
         bmult.setPreferredSize(buttonSize);
         bmult.setFont(buttonFont);
+        bpower.setPreferredSize(buttonSize);
+        bpower.setFont(buttonFont);
+        bsin.setPreferredSize(buttonSize);
+        bsin.setFont(buttonFont);
+        bcos.setPreferredSize(buttonSize);
+        bcos.setFont(buttonFont);
+        btan.setPreferredSize(buttonSize);
+        btan.setFont(buttonFont);
+        bcot.setPreferredSize(buttonSize);
+        bcot.setFont(buttonFont);
+        bln.setPreferredSize(buttonSize);
+        bln.setFont(buttonFont);
+        blog10.setPreferredSize(buttonSize);
+        blog10.setFont(buttonFont);
+        bopparen.setPreferredSize(buttonSize);
+        bopparen.setFont(buttonFont);
+        bendparen.setPreferredSize(buttonSize);
+        bendparen.setFont(buttonFont);
+        bopcurbr.setPreferredSize(buttonSize);
+        bopcurbr.setFont(buttonFont);
+        bendcurbr.setPreferredSize(buttonSize);
+        bendcurbr.setFont(buttonFont);
         bclear.setPreferredSize(buttonSize);
         bclear.setFont(buttonFont);
         bdec.setPreferredSize(buttonSize);
@@ -115,7 +149,8 @@ public class Calculator extends JFrame implements ActionListener
         bequals.setPreferredSize(buttonSize);
         bequals.setFont(buttonFont);
 
-        //add all of the action listeners
+
+        //add all action listeners
         bnum0.addActionListener(calc);
         bnum1.addActionListener(calc);
         bnum2.addActionListener(calc);
@@ -131,6 +166,17 @@ public class Calculator extends JFrame implements ActionListener
         bsub.addActionListener(calc);
         bdiv.addActionListener(calc);
         bmult.addActionListener(calc);
+        bpower.addActionListener(calc);
+        bsin.addActionListener(calc);
+        bcos.addActionListener(calc);
+        btan.addActionListener(calc);
+        bcot.addActionListener(calc);
+        bln.addActionListener(calc);
+        blog10.addActionListener(calc);
+        bopparen.addActionListener(calc);
+        bendparen.addActionListener(calc);
+        bopcurbr.addActionListener(calc);
+        bendcurbr.addActionListener(calc);
         bclear.addActionListener(calc);
         bequals.addActionListener(calc);
         bdec.addActionListener(calc);
@@ -152,6 +198,17 @@ public class Calculator extends JFrame implements ActionListener
         panel.add(bsub);
         panel.add(bdiv);
         panel.add(bmult);
+        panel.add(bpower);
+        panel.add(bsin);
+        panel.add(bcos);
+        panel.add(btan);
+        panel.add(bcot);
+        panel.add(bln);
+        panel.add(blog10);
+        //panel.add(bopparen);
+       // panel.add(bendparen);
+       // panel.add(bopcurbr);
+       // panel.add(bendcurbr);
         panel.add(bclear);
         panel.add(bdec);
         panel.add(bequals);
@@ -171,8 +228,12 @@ public class Calculator extends JFrame implements ActionListener
     {
         String expression = event.getActionCommand();
 
+        int parenCount = 0;
+        int curlyBraceCount = 0;
+
         // if the value is a number
-        if ((expression.charAt(0) >= '0' && expression.charAt(0) <= '9') || expression.charAt(0) == '.') {
+        if ((expression.charAt(0) >= '0' && expression.charAt(0) <= '9') || expression.charAt(0) == '.')
+        {
             // if operand is present then add to second no
             if (!string1.equals(""))
                 string2 = string2 + expression;
@@ -189,12 +250,20 @@ public class Calculator extends JFrame implements ActionListener
             // set the value of text
             entry.setText(string0 + string1 + string2);
         }
+
         else if (expression.charAt(0) == '=') {
 
             double solution = switch (string1) {
                 case "+" -> (Double.parseDouble(string0) + Double.parseDouble(string2));
                 case "-" -> (Double.parseDouble(string0) - Double.parseDouble(string2));
                 case "/" -> (Double.parseDouble(string0) / Double.parseDouble(string2));
+                case "^" -> (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
+                case "sin" -> (Math.sin(Double.parseDouble(string2)));
+                case "cos" -> (Math.cos(Double.parseDouble(string2)));
+                case "tan" -> (Math.tan(Double.parseDouble(string2)));
+                case "cot" -> (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                case "ln" -> (Math.log(Double.parseDouble(string2)));
+                case "log_10" -> (Math.log10(Double.parseDouble(string2)));
                 default -> (Double.parseDouble(string0) * Double.parseDouble(string2));
             };
 
@@ -208,6 +277,16 @@ public class Calculator extends JFrame implements ActionListener
 
             string1 = string2 = "";
         }
+        else if (expression.charAt(0) == '-') {
+
+            double solution = (0 - Double.parseDouble(string2));
+            string0 = expression;
+            string1 = Double.toString(solution);
+            string2 = "";
+
+            entry.setText(string0 + string1 + string2);
+
+        }
         else {
             // if there was no operand
             if (string1.equals("") || string2.equals(""))
@@ -218,6 +297,13 @@ public class Calculator extends JFrame implements ActionListener
                     case "+" -> (Double.parseDouble(string0) + Double.parseDouble(string2));
                     case "-" -> (Double.parseDouble(string0) - Double.parseDouble(string2));
                     case "/" -> (Double.parseDouble(string0) / Double.parseDouble(string2));
+                    case "^" -> (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
+                    case "sin" -> (Math.sin(Double.parseDouble(string2)));
+                    case "cos" -> (Math.cos(Double.parseDouble(string2)));
+                    case "tan" -> (Math.tan(Double.parseDouble(string2)));
+                    case "cot" -> (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                    case "ln" -> (Math.log(Double.parseDouble(string2)));
+                    case "log_10" -> (Math.log10(Double.parseDouble(string2)));
                     default -> (Double.parseDouble(string0) * Double.parseDouble(string2));
                 };
 
@@ -232,8 +318,7 @@ public class Calculator extends JFrame implements ActionListener
                 // make the operand blank
                 string2 = "";
             }
-
-            entry.setText(string0 + string1 + string2);
+                entry.setText(string0 + string1 + string2);
         }
     }
 }
