@@ -253,19 +253,61 @@ public class Calculator extends JFrame implements ActionListener
 
         else if (expression.charAt(0) == '=') {
 
-            double solution = switch (string1) {
-                case "+" -> (Double.parseDouble(string0) + Double.parseDouble(string2));
-                case "-" -> (Double.parseDouble(string0) - Double.parseDouble(string2));
-                case "/" -> (Double.parseDouble(string0) / Double.parseDouble(string2));
-                case "^" -> (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
-                case "sin" -> (Math.sin(Double.parseDouble(string2)));
-                case "cos" -> (Math.cos(Double.parseDouble(string2)));
-                case "tan" -> (Math.tan(Double.parseDouble(string2)));
-                case "cot" -> (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
-                case "ln" -> (Math.log(Double.parseDouble(string2)));
-                case "log_10" -> (Math.log10(Double.parseDouble(string2)));
-                default -> (Double.parseDouble(string0) * Double.parseDouble(string2));
-            };
+            double solution;
+            switch (string1) {
+                case "+": {
+                    solution = (Double.parseDouble(string0) + Double.parseDouble(string2));
+                    break;
+                }
+                case "-": {
+                    solution = (Double.parseDouble(string0) - Double.parseDouble(string2));
+                    break;
+                }
+                case "/": {
+                    solution = (Double.parseDouble(string0) / Double.parseDouble(string2));
+                    break;
+                }
+                case "*": {
+                    solution = (Double.parseDouble(string0) * Double.parseDouble(string2));
+                    break;
+                }
+                case "^": {
+                    solution = (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
+                    break;
+                }
+                case "sin": {
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * Math.sin(Double.parseDouble(string2)));
+                    } else {
+                        solution = (Math.sin(Double.parseDouble(string2)));
+                    }
+                    break;
+                }
+                case "cos": {
+                    solution = (Math.cos(Double.parseDouble(string2)));
+                    break;
+                }
+                case "tan": {
+                    solution = (Math.tan(Double.parseDouble(string2)));
+                    break;
+                }
+                case "cot": {
+                    solution = (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                    break;
+                }
+                case "ln": {
+                    solution = (Math.log(Double.parseDouble(string2)));
+                    break;
+                }
+                case "log_10": {
+                    solution = (Math.log10(Double.parseDouble(string2)));
+                    break;
+                }
+                default : {
+                    solution = 0;
+                    break;
+                }
+            }
 
             // store the value in 1st
 
@@ -277,7 +319,7 @@ public class Calculator extends JFrame implements ActionListener
 
             string1 = string2 = "";
         }
-        else if (expression.charAt(0) == '-') {
+       /* else if (expression.charAt(0) == '-') {
 
             double solution = (0 - Double.parseDouble(string2));
             string0 = expression;
@@ -286,26 +328,68 @@ public class Calculator extends JFrame implements ActionListener
 
             entry.setText(string0 + string1 + string2);
 
-        }
+        }*/
         else {
             // if there was no operand
             if (string1.equals("") || string2.equals(""))
                 string1 = expression;
                 // else evaluate
             else {
-                double solution = switch (string1) {
-                    case "+" -> (Double.parseDouble(string0) + Double.parseDouble(string2));
-                    case "-" -> (Double.parseDouble(string0) - Double.parseDouble(string2));
-                    case "/" -> (Double.parseDouble(string0) / Double.parseDouble(string2));
-                    case "^" -> (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
-                    case "sin" -> (Math.sin(Double.parseDouble(string2)));
-                    case "cos" -> (Math.cos(Double.parseDouble(string2)));
-                    case "tan" -> (Math.tan(Double.parseDouble(string2)));
-                    case "cot" -> (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
-                    case "ln" -> (Math.log(Double.parseDouble(string2)));
-                    case "log_10" -> (Math.log10(Double.parseDouble(string2)));
-                    default -> (Double.parseDouble(string0) * Double.parseDouble(string2));
-                };
+                double solution;
+                switch (string1) {
+                    case "+" : {
+                        solution = (Double.parseDouble(string0) + Double.parseDouble(string2));
+                        break;
+                    }
+                    case "-" : {
+                        solution = (Double.parseDouble(string0) - Double.parseDouble(string2));
+                        break;
+                    }
+                    case "/" : {
+                        solution = (Double.parseDouble(string0) / Double.parseDouble(string2));
+                        break;
+                    }
+                    case "*" : {
+                        solution = (Double.parseDouble(string0) * Double.parseDouble(string2));
+                        break;
+                    }
+                    case "^" : {
+                        solution = (Math.pow(Double.parseDouble(string0), Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "sin" : {
+                        if (!string0.equals("")) {
+                            solution = (Double.parseDouble(string0) * Math.sin(Double.parseDouble(string2)));
+                        } else {
+                            solution = (Math.sin(Double.parseDouble(string2)));
+                        }
+                        break;
+                    }
+                    case "cos" : {
+                        solution = (Math.cos(Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "tan" : {
+                        solution = (Math.tan(Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "cot" : {
+                        solution = (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "ln" : {
+                        solution = (Math.log(Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "log_10" : {
+                        solution = (Math.log10(Double.parseDouble(string2)));
+                        break;
+                    }
+                    default : {
+                        solution = 0;
+                        break;
+                    }
+                }
 
                 // store the value in 1st
 
