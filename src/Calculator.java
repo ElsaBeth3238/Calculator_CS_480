@@ -47,7 +47,7 @@ public class Calculator extends JFrame implements ActionListener
         entry.setFont(entryFont);
 
         JButton bnum0, bnum1, bnum2, bnum3, bnum4, bnum5, bnum6, bnum7, bnum8, bnum9, badd, bsub, bdiv, bmult,
-                bdec, bequals, bclear, bpower, bsin, bcos, btan, bcot, bln, blog10, bopparen, bendparen, bopcurbr, bendcurbr;
+                bdec, bequals, bclear, bneg, bpower, bsin, bcos, btan, bcot, bln, blog10, bopparen, bendparen, bopcurbr, bendcurbr;
 
         //create buttons for numbers
         bnum0 = new JButton("0");
@@ -63,7 +63,7 @@ public class Calculator extends JFrame implements ActionListener
 
         //create buttons for operations
         badd = new JButton("+");
-        bsub = new JButton("-");
+        bsub = new JButton("--");
         bdiv = new JButton("/");
         bmult = new JButton("*");
         bpower = new JButton("^");
@@ -73,6 +73,7 @@ public class Calculator extends JFrame implements ActionListener
         bcot = new JButton("cot");
         bln = new JButton("ln");
         blog10 = new JButton("log_10");
+        bneg = new JButton("-");
 
         bclear = new JButton("C");
 
@@ -134,6 +135,8 @@ public class Calculator extends JFrame implements ActionListener
         bln.setFont(buttonFont);
         blog10.setPreferredSize(buttonSize);
         blog10.setFont(buttonFont);
+        bneg.setPreferredSize(buttonSize);
+        bneg.setFont(buttonFont);
         bopparen.setPreferredSize(buttonSize);
         bopparen.setFont(buttonFont);
         bendparen.setPreferredSize(buttonSize);
@@ -173,6 +176,7 @@ public class Calculator extends JFrame implements ActionListener
         bcot.addActionListener(calc);
         bln.addActionListener(calc);
         blog10.addActionListener(calc);
+        bneg.addActionListener(calc);
         bopparen.addActionListener(calc);
         bendparen.addActionListener(calc);
         bopcurbr.addActionListener(calc);
@@ -205,6 +209,7 @@ public class Calculator extends JFrame implements ActionListener
         panel.add(bcot);
         panel.add(bln);
         panel.add(blog10);
+        panel.add(bneg);
         //panel.add(bopparen);
        // panel.add(bendparen);
        // panel.add(bopcurbr);
@@ -259,7 +264,7 @@ public class Calculator extends JFrame implements ActionListener
                     solution = (Double.parseDouble(string0) + Double.parseDouble(string2));
                     break;
                 }
-                case "-": {
+                case "--": {
                     solution = (Double.parseDouble(string0) - Double.parseDouble(string2));
                     break;
                 }
@@ -303,6 +308,10 @@ public class Calculator extends JFrame implements ActionListener
                     solution = (Math.log10(Double.parseDouble(string2)));
                     break;
                 }
+                case "-" : {
+                    solution = (0 - (Double.parseDouble(string2)));
+                    break;
+                }
                 default : {
                     solution = 0;
                     break;
@@ -341,7 +350,7 @@ public class Calculator extends JFrame implements ActionListener
                         solution = (Double.parseDouble(string0) + Double.parseDouble(string2));
                         break;
                     }
-                    case "-" : {
+                    case "--" : {
                         solution = (Double.parseDouble(string0) - Double.parseDouble(string2));
                         break;
                     }
@@ -383,6 +392,10 @@ public class Calculator extends JFrame implements ActionListener
                     }
                     case "log_10" : {
                         solution = (Math.log10(Double.parseDouble(string2)));
+                        break;
+                    }
+                    case "-" : {
+                        solution = (0 - (Double.parseDouble(string2)));
                         break;
                     }
                     default : {
