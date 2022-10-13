@@ -29,6 +29,7 @@ public class Calculator extends JFrame implements ActionListener
     public static void main(String[] args)
     {
         frame = new JFrame("calculator");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         try
         {
@@ -40,9 +41,11 @@ public class Calculator extends JFrame implements ActionListener
 
         Calculator calc = new Calculator();
 
-        entry = new JTextField(16);
-
+        entry = new JTextField(20);
         entry.setEditable(false);
+
+        Font entryFont = new Font("Arial", Font.PLAIN, 25);
+        entry.setFont(entryFont);
 
         JButton bnum0, bnum1, bnum2, bnum3, bnum4, bnum5, bnum6, bnum7, bnum8, bnum9, badd, bsub, bdiv, bmult, bdec, bequals, bclear;
 
@@ -69,7 +72,48 @@ public class Calculator extends JFrame implements ActionListener
         bequals = new JButton("=");
         bdec = new JButton(".");
 
+
+        //create panel
         JPanel panel = new JPanel();
+
+        //set preferred sizes and fonts for buttons
+        Dimension buttonSize = new Dimension(70, 70);
+        Font buttonFont = new Font("Arial", Font.PLAIN, 18);
+        bnum0.setPreferredSize(buttonSize);
+        bnum0.setFont(buttonFont);
+        bnum1.setPreferredSize(buttonSize);
+        bnum1.setFont(buttonFont);
+        bnum2.setPreferredSize(buttonSize);
+        bnum2.setFont(buttonFont);
+        bnum3.setPreferredSize(buttonSize);
+        bnum3.setFont(buttonFont);
+        bnum4.setPreferredSize(buttonSize);
+        bnum4.setFont(buttonFont);
+        bnum5.setPreferredSize(buttonSize);
+        bnum5.setFont(buttonFont);
+        bnum6.setPreferredSize(buttonSize);
+        bnum6.setFont(buttonFont);
+        bnum7.setPreferredSize(buttonSize);
+        bnum7.setFont(buttonFont);
+        bnum8.setPreferredSize(buttonSize);
+        bnum8.setFont(buttonFont);
+        bnum9.setPreferredSize(buttonSize);
+        bnum9.setFont(buttonFont);
+
+        badd.setPreferredSize(buttonSize);
+        badd.setFont(buttonFont);
+        bsub.setPreferredSize(buttonSize);
+        bsub.setFont(buttonFont);
+        bdiv.setPreferredSize(buttonSize);
+        bdiv.setFont(buttonFont);
+        bmult.setPreferredSize(buttonSize);
+        bmult.setFont(buttonFont);
+        bclear.setPreferredSize(buttonSize);
+        bclear.setFont(buttonFont);
+        bdec.setPreferredSize(buttonSize);
+        bdec.setFont(buttonFont);
+        bequals.setPreferredSize(buttonSize);
+        bequals.setFont(buttonFont);
 
         //add all of the action listeners
         bnum0.addActionListener(calc);
@@ -118,7 +162,7 @@ public class Calculator extends JFrame implements ActionListener
         //add panel to frame
         frame.add(panel);
 
-        frame.setSize(200,220);
+        frame.setSize(500,500);
         frame.setVisible(true);
 
     }
