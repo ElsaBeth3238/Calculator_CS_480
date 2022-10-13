@@ -289,23 +289,43 @@ public class Calculator extends JFrame implements ActionListener
                     break;
                 }
                 case "cos": {
-                    solution = (Math.cos(Double.parseDouble(string2)));
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * Math.cos(Double.parseDouble(string2)));
+                    } else {
+                        solution = (Math.cos(Double.parseDouble(string2)));
+                    }
                     break;
                 }
                 case "tan": {
-                    solution = (Math.tan(Double.parseDouble(string2)));
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * Math.tan(Double.parseDouble(string2)));
+                    } else {
+                        solution = (Math.tan(Double.parseDouble(string2)));
+                    }
                     break;
                 }
                 case "cot": {
-                    solution = (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2))));
+                    } else {
+                        solution = (Math.cos(Double.parseDouble(string2)) / Math.sin(Double.parseDouble(string2)));
+                    }
                     break;
                 }
                 case "ln": {
-                    solution = (Math.log(Double.parseDouble(string2)));
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * Math.log(Double.parseDouble(string2)));
+                    } else {
+                        solution = (Math.log(Double.parseDouble(string2)));
+                    }
                     break;
                 }
                 case "log_10": {
-                    solution = (Math.log10(Double.parseDouble(string2)));
+                    if (!string0.equals("")) {
+                        solution = (Double.parseDouble(string0) * Math.log10(Double.parseDouble(string2)));
+                    } else {
+                        solution = (Math.log10(Double.parseDouble(string2)));
+                    }
                     break;
                 }
                 case "-" : {
